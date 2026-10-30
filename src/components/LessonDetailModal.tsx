@@ -225,10 +225,8 @@ export const LessonDetailModal: React.FC<LessonDetailModalProps> = ({
 
             <button
               onClick={() => {
-                if (window.confirm(t.deleteConfirm)) {
-                  onDeleteLesson(lesson.id);
-                  onClose();
-                }
+                onDeleteLesson(lesson.id);
+                onClose();
               }}
               title={t.deleteLesson}
               className="p-2 rounded-lg bg-[#18211b] border border-[#d4af37]/20 text-[#a0aaa2] hover:text-rose-400 hover:bg-rose-950/30 transition"

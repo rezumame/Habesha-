@@ -78,13 +78,14 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
     reader.readAsText(file);
   };
 
+  const [confirmClearAll, setConfirmClearAll] = useState(false);
+
   const handleClearAll = async () => {
-    if (window.confirm('Are you sure you want to delete all uploaded lessons? This action cannot be undone.')) {
-      await StorageService.clearAllLessons();
-      onDataChanged();
-      setSuccessMsg('All lessons cleared. App is completely pristine.');
-      setTimeout(() => setSuccessMsg(''), 3000);
-    }
+    await StorageService.clearAllLessons();
+    onDataChanged();
+    setConfirmClearAll(false);
+    setSuccessMsg('All lessons cleared. App is completely pristine.');
+    setTimeout(() => setSuccessMsg(''), 3000);
   };
 
   const languages: { code: SupportedLanguage; label: string }[] = [
@@ -205,13 +206,31 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               </p>
             </div>
 
-            <button
-              onClick={handleClearAll}
-              className="px-3 py-1.5 rounded-lg bg-rose-950/40 hover:bg-rose-900/60 text-rose-400 border border-rose-500/30 text-xs font-medium flex items-center gap-1.5 transition"
-            >
-              <Trash2 className="w-3.5 h-3.5" />
-              <span>Clear</span>
-            </button>
+            {confirmClearAll ? (
+              <div className="flex items-center gap-1.5 bg-rose-950/80 px-2.5 py-1 rounded-lg border border-rose-500/50">
+                <span className="text-[10px] text-rose-300 font-bold">Sure?</span>
+                <button
+                  onClick={handleClearAll}
+                  className="text-xs bg-rose-600 hover:bg-rose-700 text-white font-bold px-2 py-0.5 rounded transition"
+                >
+                  Yes
+                </button>
+                <button
+                  onClick={() => setConfirmClearAll(false)}
+                  className="text-xs text-zinc-400 hover:text-white px-1.5 py-0.5 transition"
+                >
+                  Cancel
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => setConfirmClearAll(true)}
+                className="px-3 py-1.5 rounded-lg bg-rose-950/40 hover:bg-rose-900/60 text-rose-400 border border-rose-500/30 text-xs font-medium flex items-center gap-1.5 transition"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+                <span>Clear</span>
+              </button>
+            )}
           </div>
         </div>
 

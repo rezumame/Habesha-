@@ -182,11 +182,7 @@ export const AudioLessonsView: React.FC<AudioLessonsViewProps> = ({
 
                   {onDeleteLesson && (
                     <button
-                      onClick={() => {
-                        if (window.confirm(`ትምህርት ${lesson.lessonNumber}: "${lesson.title}" ን ከድምጾች ማዕከል መሰረዝ ይፈልጋሉ?`)) {
-                          onDeleteLesson(lesson.id);
-                        }
-                      }}
+                      onClick={() => onDeleteLesson(lesson.id)}
                       className="p-2 rounded-lg bg-[#18211b] hover:bg-rose-950/40 text-[#7e8781] hover:text-rose-400 border border-white/5 transition"
                       title="ሰርዝ (Delete)"
                     >

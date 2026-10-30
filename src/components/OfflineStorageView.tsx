@@ -70,13 +70,14 @@ export const OfflineStorageView: React.FC<OfflineStorageViewProps> = ({
     reader.readAsText(file);
   };
 
+  const [confirmClear, setConfirmClear] = useState(false);
+
   const handleClear = async () => {
-    if (window.confirm('ሁሉንም የተጫኑ ትምህርቶች ማጽዳት ይፈልጋሉ?')) {
-      await StorageService.clearAllLessons();
-      onDataChanged();
-      setStatusMessage('ሁሉም ትምህርቶች ጸድተዋል።');
-      setTimeout(() => setStatusMessage(''), 3000);
-    }
+    await StorageService.clearAllLessons();
+    onDataChanged();
+    setConfirmClear(false);
+    setStatusMessage('ሁሉም ትምህርቶች ጸድተዋል።');
+    setTimeout(() => setStatusMessage(''), 3000);
   };
 
   return (
@@ -162,13 +163,31 @@ export const OfflineStorageView: React.FC<OfflineStorageViewProps> = ({
             onChange={handleImportFile}
           />
 
-          <button
-            onClick={handleClear}
-            className="px-4 py-2 rounded-xl bg-rose-950/30 hover:bg-rose-900/40 text-xs text-rose-400 border border-rose-500/30 flex items-center gap-1.5 font-semibold transition ml-auto"
-          >
-            <Trash2 className="w-3.5 h-3.5" />
-            <span>መተግበሪያውን አጽዳ</span>
-          </button>
+          {confirmClear ? (
+            <div className="flex items-center gap-2 bg-rose-950/80 px-3 py-1.5 rounded-xl border border-rose-500/50 ml-auto">
+              <span className="text-xs text-rose-300 font-semibold">ሁሉንም ማጽዳት ይፈልጋሉ?</span>
+              <button
+                onClick={handleClear}
+                className="text-xs bg-rose-600 hover:bg-rose-700 text-white font-bold px-2.5 py-1 rounded-lg transition"
+              >
+                አዎ አጽዳ
+              </button>
+              <button
+                onClick={() => setConfirmClear(false)}
+                className="text-xs text-zinc-400 hover:text-white px-2 py-1 transition"
+              >
+                ተመለስ
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={() => setConfirmClear(true)}
+              className="px-4 py-2 rounded-xl bg-rose-950/30 hover:bg-rose-900/40 text-xs text-rose-400 border border-rose-500/30 flex items-center gap-1.5 font-semibold transition ml-auto"
+            >
+              <Trash2 className="w-3.5 h-3.5" />
+              <span>መተግበሪያውን አጽዳ</span>
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -41,6 +41,8 @@ export const LessonCard: React.FC<LessonCardProps> = ({
     playLessonAudio(lesson);
   };
 
+  const [confirmDelete, setConfirmDelete] = React.useState(false);
+
   return (
     <div
       onClick={() => onOpenDetail(lesson)}
@@ -105,20 +107,46 @@ export const LessonCard: React.FC<LessonCardProps> = ({
           </button>
 
           {onDeleteLesson && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                if (window.confirm(`ትምህርት ${lesson.lessonNumber}: "${lesson.title}" ን መሰረዝ ይፈልጋሉ?`)) {
-                  onDeleteLesson(lesson.id, e);
-                }
-              }}
-              title="ሰርዝ (Delete)"
-              className="p-1.5 rounded-lg bg-[#121814] text-[#7d8780] hover:text-rose-400 hover:bg-rose-950/40 border border-transparent hover:border-rose-500/30 transition"
-            >
-              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6" />
-              </svg>
-            </button>
+            confirmDelete ? (
+              <div 
+                className="flex items-center gap-1 bg-rose-950/90 px-2 py-0.5 rounded-lg border border-rose-500/50 shadow-md" 
+                onClick={(e) => e.stopPropagation()}
+              >
+                <span className="text-[10px] text-rose-300 font-bold">ይሰረዝ?</span>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onDeleteLesson(lesson.id, e);
+                    setConfirmDelete(false);
+                  }}
+                  className="text-[10px] text-white font-bold px-1.5 py-0.5 bg-rose-600 hover:bg-rose-700 rounded transition"
+                >
+                  አዎ
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setConfirmDelete(false);
+                  }}
+                  className="text-[10px] text-[#9da59f] hover:text-white px-1 py-0.5 transition"
+                >
+                  ተመለስ
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setConfirmDelete(true);
+                }}
+                title="ሰርዝ (Delete)"
+                className="p-1.5 rounded-lg bg-[#121814] text-[#7d8780] hover:text-rose-400 hover:bg-rose-950/40 border border-transparent hover:border-rose-500/30 transition"
+              >
+                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6" />
+                </svg>
+              </button>
+            )
           )}
         </div>
       </div>

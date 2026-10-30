@@ -186,11 +186,7 @@ export const DocumentCenterView: React.FC<DocumentCenterViewProps> = ({
 
                   {onDeleteLesson && (
                     <button
-                      onClick={() => {
-                        if (window.confirm(`ትምህርት ${lesson.lessonNumber}: "${lesson.title}" ን ከሰነዶች ማዕከል መሰረዝ ይፈልጋሉ?`)) {
-                          onDeleteLesson(lesson.id);
-                        }
-                      }}
+                      onClick={() => onDeleteLesson(lesson.id)}
                       className="p-2 rounded-lg bg-[#18211b] hover:bg-rose-950/40 text-[#7e8781] hover:text-rose-400 border border-white/5 transition"
                       title="ሰርዝ (Delete)"
                     >
