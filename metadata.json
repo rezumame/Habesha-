@@ -1,0 +1,6 @@
+{
+  "name": "Habesha (الحبشة) - Islamic Educational Platform",
+  "description": "Professional Islamic educational mobile application featuring dark and gold aesthetics, multi-media video, MP3 audio player, universal PDF document viewer, and lesson management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

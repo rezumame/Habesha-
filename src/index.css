@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #080a09;
+    --bg-surface: #0e1210;
+    --bg-surface-elevated: #151a17;
+    --gold-primary: #d4af37;
+    --gold-light: #f6e08c;
+    --gold-dark: #997316;
+    --gold-accent: #c6922b;
+    --emerald-dark: #071912;
+    --border-gold: rgba(212, 175, 55, 0.22);
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', 'Noto Sans Ethiopic', sans-serif;
+    background-color: #080a09;
+    color: #e8ebe8;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom fonts */
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-amiri {
+  font-family: 'Amiri', serif;
+}
+
+.font-ethiopic {
+  font-family: 'Noto Sans Ethiopic', 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Gold Gradient Utilities */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #f7e29c 0%, #d4af37 50%, #aa8024 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-subtle {
+  background: linear-gradient(135deg, rgba(247, 226, 156, 0.15) 0%, rgba(212, 175, 55, 0.08) 50%, rgba(170, 128, 36, 0.02) 100%);
+}
+
+.gold-gradient-btn {
+  background: linear-gradient(135deg, #e5be49 0%, #d4af37 40%, #b38622 100%);
+  color: #0a0c0b;
+  font-weight: 600;
+  box-shadow: 0 4px 20px -2px rgba(212, 175, 55, 0.35);
+  transition: all 0.25s ease;
+}
+
+.gold-gradient-btn:hover {
+  background: linear-gradient(135deg, #f3cd5a 0%, #dfbe4a 40%, #c4962e 100%);
+  box-shadow: 0 6px 25px 0 rgba(212, 175, 55, 0.5);
+  transform: translateY(-1px);
+}
+
+.gold-gradient-btn:active {
+  transform: translateY(0);
+}
+
+/* Gold border glow */
+.gold-border {
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.gold-border-focus:focus-within {
+  border-color: rgba(212, 175, 55, 0.6);
+  box-shadow: 0 0 15px -2px rgba(212, 175, 55, 0.25);
+}
+
+/* Card aesthetics */
+.habesha-card {
+  background: radial-gradient(circle at top left, #121814 0%, #0c100e 100%);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.65), 0 0 1px 1px rgba(212, 175, 55, 0.05) inset;
+  border-radius: 1rem;
+}
+
+.habesha-card-interactive {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.habesha-card-interactive:hover {
+  border-color: rgba(212, 175, 55, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.8), 0 0 20px -4px rgba(212, 175, 55, 0.15);
+}
+
+/* Islamic Geometric Motif Subtle Pattern */
+.islamic-pattern {
+  background-image: radial-gradient(rgba(212, 175, 55, 0.07) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080a09;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #252e29;
+  border-radius: 9999px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}
+
+/* Audio slider styling */
+input[type=range] {
+  accent-color: #d4af37;
+}
+
